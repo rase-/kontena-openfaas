@@ -13,6 +13,7 @@
     "flow-remove-types": "1.2.1",
     "micro": "8.0.3",
     "microrouter": "2.2.2",
+    "node-fetch": "1.7.2",
     "url-pattern": "1.0.3"
   },
   "devDependencies": {
