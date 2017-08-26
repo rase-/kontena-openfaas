@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node -r ./node_modules/flow-remove-types/register.js ./node_modules/.bin/micro -p 3000 index.js",
-    "fmt": "prettier --single-quote --print-width=120  --write lib/*"
+    "fmt": "prettier --single-quote --print-width=120  --write lib/*",
+    "flow": "./node_modules/.bin/flow"
   },
   "dependencies": {
     "flow-remove-types": "1.2.1",

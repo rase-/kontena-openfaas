@@ -39,6 +39,6 @@ module.exports = router(
   get('/system/scale-function/:name', () => []),
 
   // Proxy function invocation
-  catchall('/function/:name', () => []),
-  catchall('/function/:name/', () => [])
+  catchall('/function/:name', (req, res) => []),
+  catchall('/function/:name/', (req, res) => [])
 );
