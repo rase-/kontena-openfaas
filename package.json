@@ -1,0 +1,23 @@
+{
+  "name": "kontena-openfaas",
+  "version": "1.0.0",
+  "description": "Open-FAAS setup for kontena",
+  "main": "index.js",
+  "author": "rase-",
+  "license": "MIT",
+  "scripts": {
+    "start": "node -r ./node_modules/flow-remove-types/register.js ./node_modules/.bin/micro -p 3000 index.js",
+    "fmt": "prettier --single-quote --print-width=120  --write lib/*"
+  },
+  "dependencies": {
+    "flow-remove-types": "1.2.1",
+    "micro": "8.0.3",
+    "microrouter": "2.2.2",
+    "url-pattern": "1.0.3"
+  },
+  "devDependencies": {
+    "flow-bin": "0.53.1",
+    "flow-typed": "2.1.5",
+    "prettier": "1.5.3"
+  }
+}
