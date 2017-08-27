@@ -7,16 +7,12 @@ variables:
     default: openfaas.kontena.rocks
     from:
       prompt: Openfaas domain
-  functions_provider:
-    type: string
-    default: kontena-openfaas.openfaas.kontena.local
-    from:
-      prompt: Openfaas functions provider URL
 services:
   loadbalancer:
     image: kontena/lb:latest
     ports:
       - 80:80
+      - 9090:9090
   api:
     name: kontena-openfaas
     image: rase-/kontena-openfaas
@@ -27,31 +23,37 @@ services:
       wait_for_port: 8080
 
   gateway:
-    name: openfaas-gateway
+    name: gateway
     instances: 1
     stateful: false
     image: functions/gateway:0.6.1
     environment:
-      - functions_provider_url={{ functions_provider }}
+      - functions_provider_url=%{project}-openfaas.kontena.local
     links:
       - loadbalancer
+      - kontena-openfaas:openfaas
     environment:
-      - KONTENA_LB_INTERNAL_PORT=3000
+      - KONTENA_LB_INTERNAL_PORT=8080
       - KONTENA_LB_VIRTUAL_HOSTS={{ app_domain }}
     deploy:
       strategy: ha
       wait_for_port: 3000
 
   prometheus:
-    name: openfaas-prometheus
+    name: prometheus
     instances: 1
     stateful: false
     image: rase-/openfaas-prometheus
+    links:
+      - loadbalancer
+    environment:
+      - KONTENA_LB_INTERNAL_PORT=9090
+      - KONTENA_LB_VIRTUAL_PATH=/prometheus
     deploy:
       wait_for_port: 9090
 
   prometheus-alertmanager:
-    name: openfaas-prometheus-alertmanager
+    name: prometheus-alertmanager
     instances: 1
     stateful: false
     image: rase-/openfaas-prometheus-alertmanager
