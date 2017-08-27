@@ -41,14 +41,13 @@ services:
     instances: 1
     stateful: false
     image: functions/gateway:0.6.1
-    environment:
-      - functions_provider_url=%{project}-openfaas.kontena.local
     links:
       - loadbalancer
       - api:openfaas
     environment:
       - KONTENA_LB_INTERNAL_PORT=8080
       - KONTENA_LB_VIRTUAL_HOSTS={{ app_domain }}
+      - functions_provider_url=%{project}-openfaas.kontena.local
     deploy:
       strategy: ha
       wait_for_port: 8080
