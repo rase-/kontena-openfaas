@@ -19,7 +19,6 @@ services:
       - 443:443
       - 9090:9090
   api:
-    name: kontena-openfaas
     image: rase/kontena-openfaas
     instances: 3
     stateful: false
@@ -28,7 +27,6 @@ services:
       wait_for_port: 8080
 
   gateway:
-    name: gateway
     instances: 1
     stateful: false
     image: functions/gateway:0.6.1
@@ -36,7 +34,7 @@ services:
       - functions_provider_url=%{project}-openfaas.kontena.local
     links:
       - loadbalancer
-      - kontena-openfaas:openfaas
+      - api:openfaas
     environment:
       - KONTENA_LB_INTERNAL_PORT=8080
       - KONTENA_LB_VIRTUAL_HOSTS={{ app_domain }}
@@ -45,10 +43,9 @@ services:
       wait_for_port: 3000
 
   prometheus:
-    name: prometheus
     instances: 1
     stateful: false
-    image: rase/openfaas-prometheus
+    image: rase/openfaas-kontena-prometheus
     links:
       - loadbalancer
     environment:
@@ -58,10 +55,9 @@ services:
       wait_for_port: 9090
 
   prometheus-alertmanager:
-    name: prometheus-alertmanager
     instances: 1
     stateful: false
-    image: rase/openfaas-prometheus-alertmanager
+    image: rase/openfaas-kontena-prometheus-alertmanager
     deploy:
       wait_for_port: 9093
 
