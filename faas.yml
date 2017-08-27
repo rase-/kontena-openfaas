@@ -20,7 +20,7 @@ services:
       - 9090:9090
   api:
     name: kontena-openfaas
-    image: rase-/kontena-openfaas
+    image: rase/kontena-openfaas
     instances: 3
     stateful: false
     deploy:
@@ -48,7 +48,7 @@ services:
     name: prometheus
     instances: 1
     stateful: false
-    image: rase-/openfaas-prometheus
+    image: rase/openfaas-prometheus
     links:
       - loadbalancer
     environment:
@@ -61,7 +61,7 @@ services:
     name: prometheus-alertmanager
     instances: 1
     stateful: false
-    image: rase-/openfaas-prometheus-alertmanager
+    image: rase/openfaas-prometheus-alertmanager
     deploy:
       wait_for_port: 9093
 
