@@ -19,7 +19,7 @@ services:
       - 443:443
       - 9090:9090
   api:
-    image: rase/kontena-openfaas
+    image: rase/kontena-openfaas:0.0.2
     instances: 3
     stateful: false
     deploy:
@@ -45,7 +45,7 @@ services:
   prometheus:
     instances: 1
     stateful: false
-    image: rase/openfaas-kontena-prometheus
+    image: rase/openfaas-kontena-prometheus:0.0.1
     links:
       - loadbalancer
     environment:
@@ -57,7 +57,7 @@ services:
   prometheus-alertmanager:
     instances: 1
     stateful: false
-    image: rase/openfaas-kontena-prometheus-alertmanager
+    image: rase/openfaas-kontena-prometheus-alertmanager:0.0.1
     deploy:
       wait_for_port: 9093
 
