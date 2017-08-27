@@ -40,7 +40,7 @@ services:
       - KONTENA_LB_VIRTUAL_HOSTS={{ app_domain }}
     deploy:
       strategy: ha
-      wait_for_port: 3000
+      wait_for_port: 8080
 
   prometheus:
     instances: 1
