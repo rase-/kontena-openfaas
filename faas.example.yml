@@ -7,6 +7,13 @@ variables:
     default: openfaas.kontena.rocks
     from:
       prompt: Openfaas domain
+
+  monitor_domain:
+    type: string
+    default: openfaas-monitor.kontena.rocks
+    from:
+      prompt: Openfaas monitor domain
+
 services:
   loadbalancer:
     image: kontena/lb:latest
@@ -54,7 +61,7 @@ services:
       - loadbalancer
     environment:
       - KONTENA_LB_INTERNAL_PORT=9090
-      - KONTENA_LB_VIRTUAL_PATH=/prometheus
+      - KONTENA_LB_VIRTUAL_HOSTS={{ monitor_domain }}
     deploy:
       wait_for_port: 9090
 
