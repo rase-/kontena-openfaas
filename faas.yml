@@ -10,8 +10,13 @@ variables:
 services:
   loadbalancer:
     image: kontena/lb:latest
+    secrets:
+      - secret: SSL_STAR_kontena_rocks
+        name: SSL_CERTS
+        type: env
     ports:
       - 80:80
+      - 443:443
       - 9090:9090
   api:
     name: kontena-openfaas
