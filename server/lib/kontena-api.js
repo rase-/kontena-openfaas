@@ -16,7 +16,7 @@ module.exports = class KontenaApi {
     const res = await fetch(this.masterUrl + `/v1/grids/${this.gridId}/services`, {
       method: 'GET',
       headers: {
-        ['authorization']: `bearer ${this.authToken}`
+        ['authorization']: `Bearer ${this.authToken}`
       }
     });
 
@@ -32,7 +32,7 @@ module.exports = class KontenaApi {
       method: 'POST',
       body: JSON.stringify(deployment),
       headers: {
-        ['authorization']: `bearer ${this.authToken}`
+        ['authorization']: `Bearer ${this.authToken}`
       }
     });
 
@@ -44,7 +44,7 @@ module.exports = class KontenaApi {
     const dres = await fetch(this.masterUrl + `/v1/grids/${this.gridId}/services/${serviceId}/deploy`, {
       method: 'POST',
       headers: {
-        ['authorization']: `bearer ${this.authToken}`
+        ['authorization']: `Bearer ${this.authToken}`
       }
     });
 
@@ -57,7 +57,7 @@ module.exports = class KontenaApi {
     const res = await fetch(this.masterUrl + `/v1/grids/${this.gridId}/services/${id}`, {
       method: 'DELETE',
       headers: {
-        ['authorization']: `bearer ${this.authToken}`
+        ['authorization']: `Bearer ${this.authToken}`
       }
     });
   }
@@ -67,7 +67,7 @@ module.exports = class KontenaApi {
       method: 'POST',
       body: JSON.stringify({ instances }),
       headers: {
-        ['authorization']: `bearer ${this.authToken}`
+        ['authorization']: `Bearer ${this.authToken}`
       }
     });
 

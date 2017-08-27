@@ -15,6 +15,7 @@ const MASTER_URL: string = process.env.MASTER_URL || '';
 const AUTH_TOKEN: string = process.env.AUTH_TOKEN || '';
 const GRID_ID: string = process.env.GRID_ID || 'openfaas';
 
+console.log('starting api with params', MASTER_URL, AUTH_TOKEN, GRID_ID);
 const api = new KontenaApi(MASTER_URL, AUTH_TOKEN, GRID_ID);
 
 const getParamsAndQuery = (pattern, url) => {
