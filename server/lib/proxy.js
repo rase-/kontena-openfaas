@@ -1,9 +1,11 @@
 // @flow
 import type KontenaApi from './kontena-api';
 
+const { IncomingMessage } = require('http');
+
 const request = require('request');
 
-class ParamRequest extends http$IncomingMessage {
+class ParamRequest extends IncomingMessage {
   params: { [string]: string };
 }
 

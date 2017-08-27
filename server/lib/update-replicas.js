@@ -1,9 +1,10 @@
 // @flow
 import type KontenaApi from './kontena-api';
 
+const { IncomingMessage } = require('http');
 const { json } = require('micro');
 
-class ParamRequest extends http$IncomingMessage {
+class ParamRequest extends IncomingMessage {
   params: { [string]: string };
 }
 
