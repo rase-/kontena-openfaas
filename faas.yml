@@ -22,6 +22,10 @@ services:
     image: rase/kontena-openfaas:0.0.2
     instances: 3
     stateful: false
+    environment:
+      - MASTER_URL=<fill-here>
+      - AUTH_TOKEN=<fill-here>
+      - GRID_ID=<fill-here>
     deploy:
       strategy: ha
       wait_for_port: 8080
