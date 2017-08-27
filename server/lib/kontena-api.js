@@ -20,11 +20,11 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (res.statusCode !== 200) {
+    if (res.status !== 200) {
       throw new Error('Non-OK status code fetching services');
     }
 
-    return res.json();
+    return (await res.json()).services;
   }
 
   async deployService(deployment: Object): Promise<void> {
@@ -36,7 +36,7 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (res.statusCode !== 200) {
+    if (res.status !== 200) {
       throw new Error('Non-OK status code fetching services');
     }
 
@@ -48,7 +48,7 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (dres.statusCode !== 200) {
+    if (dres.status !== 200) {
       throw new Error('Non-OK status code fetching services');
     }
   }
@@ -71,7 +71,7 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (res.statusCode !== 200) {
+    if (res.status !== 200) {
       throw new Error('Non-OK status code fetching services');
     }
   }
