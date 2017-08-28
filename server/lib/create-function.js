@@ -9,9 +9,9 @@ function makeDeploymentSpec(body: CreateFunctionBody): Object {
     image: body.image,
     env: (body.envProcess && body.envProcess.length > 0
         ? [`fprocess=${body.envProcess}`]
-        : []).concat(Object.keys(body.envVars).map((key) => {
+        : []).concat(body.envVars ? Object.keys(body.envVars).map((key) => {
       return `${key}=${body.envVars[key]}`;
-    })),
+    }) : []),
     strategy: 'ha',
     ports: [8080]
   };
