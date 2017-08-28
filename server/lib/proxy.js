@@ -15,7 +15,7 @@ module.exports = function(api: KontenaApi): (req: ParamRequest, http$ServerRespo
   return async function(req, res): Promise<void> {
     const name = req.params.name;
     req
-      .pipe(request.post(`${name}.${api.gridId}.kontena.local`))
+      .pipe(request.post(`http://${name}.${api.gridId}.kontena.local:8080`))
       .pipe(res);
   }
 }

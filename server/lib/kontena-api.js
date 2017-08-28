@@ -43,6 +43,7 @@ module.exports = class KontenaApi {
     }
 
     const serviceId = (await res.json()).id;
+    console.log('deploying', serviceId);
     const dres = await fetch(this.masterUrl + `/v1/grids/${this.gridId}/services/${serviceId}/deploy`, {
       method: 'POST',
       headers: {
