@@ -7,13 +7,13 @@ function makeDeploymentSpec(body: CreateFunctionBody): Object {
   return {
     name: body.service,
     image: body.image,
+    stateful: false,
     env: (body.envProcess && body.envProcess.length > 0
         ? [`fprocess=${body.envProcess}`]
         : []).concat(body.envVars ? Object.keys(body.envVars).map((key) => {
       return `${key}=${body.envVars[key]}`;
     }) : []),
-    strategy: 'ha',
-    ports: [8080]
+    strategy: 'ha'
   };
 }
 
