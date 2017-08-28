@@ -16,6 +16,7 @@
     "microrouter": "2.2.2",
     "node-fetch": "1.7.2",
     "request": "2.81.0",
+    "stream-to-promise": "^2.2.0",
     "url-pattern": "1.0.3"
   },
   "devDependencies": {
