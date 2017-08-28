@@ -49,7 +49,7 @@ module.exports = router(
 
   // Manage scale
   get('/system/function/:name', readReplicasHandler(api)),
-  get('/system/scale-function/:name', updateReplicasHandler(api)),
+  post('/system/scale-function/:name', updateReplicasHandler(api)),
 
   // Proxy function invocation
   catchall('/function/:name', proxyHandler(api)),

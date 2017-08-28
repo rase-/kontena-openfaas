@@ -44,7 +44,7 @@ module.exports = class KontenaApi {
 
     const serviceId = (await res.json()).id;
     console.log('deploying', serviceId);
-    const dres = await fetch(this.masterUrl + `/v1/grids/${this.gridId}/services/${serviceId}/deploy`, {
+    const dres = await fetch(this.masterUrl + `/v1/services/${serviceId}/deploy`, {
       method: 'POST',
       headers: {
         ['authorization']: `Bearer ${this.authToken}`
@@ -58,7 +58,7 @@ module.exports = class KontenaApi {
   }
 
   async removeService(id: string): Promise<void> {
-    const res = await fetch(this.masterUrl + `/v1/grids/${this.gridId}/services/${id}`, {
+    const res = await fetch(this.masterUrl + `/v1/services/${id}`, {
       method: 'DELETE',
       headers: {
         ['authorization']: `Bearer ${this.authToken}`
@@ -67,7 +67,7 @@ module.exports = class KontenaApi {
   }
 
   async updateReplicas(id: string, instances: number): Promise<void> {
-    const res = await fetch(this.masterUrl + `/v1/grids/${this.gridId}/services/${id}/scale`, {
+    const res = await fetch(this.masterUrl + `/v1/services/${id}/scale`, {
       method: 'POST',
       body: JSON.stringify({ instances }),
       headers: {
