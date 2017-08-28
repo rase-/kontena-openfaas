@@ -26,7 +26,7 @@ services:
       - 443:443
       - 9090:9090
   api:
-    image: rase/kontena-openfaas:0.0.9
+    image: rase/kontena-openfaas:0.0.10
     instances: 1
     stateful: false
     environment:

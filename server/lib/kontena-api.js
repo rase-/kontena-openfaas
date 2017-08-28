@@ -50,8 +50,8 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (dres.status !== 200) {
-      const errBody = await res.text();
+    if (dres.status < 200 || dres.status > 299) {
+      const errBody = await dres.text();
       throw new Error(`Non-OK status code (${res.status}) fetching services: ${errBody}`);
     }
   }
