@@ -20,7 +20,7 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (res.status !== 200) {
+    if (res.status < 200 || res.status > 299) {
       const errBody = await res.text();
       throw new Error(`Non-OK status code (${res.status}) fetching services: ${errBody}`);
     }
@@ -37,7 +37,7 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (res.status !== 200) {
+    if (res.status < 200 || res.status > 299) {
       const errBody = await res.text();
       throw new Error(`Non-OK status code (${res.status}) fetching services: ${errBody}`);
     }
@@ -74,7 +74,7 @@ module.exports = class KontenaApi {
       }
     });
 
-    if (res.status !== 200) {
+    if (res.status < 200 || res.status > 299) {
       const errBody = await res.text();
       throw new Error(`Non-OK status code (${res.status}) fetching services: ${errBody}`);
     }
