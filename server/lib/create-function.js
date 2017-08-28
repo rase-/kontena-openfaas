@@ -10,9 +10,9 @@ function makeDeploymentSpec(body: CreateFunctionBody): Object {
     stateful: false,
     replicas: 1,
     env: (body.envProcess && body.envProcess.length > 0
-        ? [`fprocess="${body.envProcess}"`]
+        ? [`fprocess=${body.envProcess}`]
         : []).concat(body.envVars ? Object.keys(body.envVars).map((key) => {
-      return `${key}="${body.envVars[key]}"`;
+      return `${key}=${body.envVars[key]}`;
     }) : []),
     strategy: 'ha'
   };
