@@ -26,8 +26,8 @@ services:
       - 443:443
       - 9090:9090
   api:
-    image: rase/kontena-openfaas:0.0.6
-    instances: 3
+    image: rase/kontena-openfaas:0.0.7
+    instances: 1
     stateful: false
     environment:
       - MASTER_URL=<fill-here>
