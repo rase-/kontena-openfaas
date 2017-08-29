@@ -56,7 +56,7 @@ services:
     instances: 1
     stateful: false
     image: rase/openfaas-kontena-prometheus:0.0.1
-    command: ["prometheus", "-config.file=/etc/prometheus/prometheus.yml", "-storage.local.path=/prometheus", "-storage.local.memory-chunks=10000", "--alertmanager.url=http://prometheus-alertmanager.openfaas.kontena.local:9093"]
+    command: prometheus -config.file=/etc/prometheus/prometheus.yml -storage.local.path=/prometheus -storage.local.memory-chunks=10000 --alertmanager.url=http://prometheus-alertmanager.openfaas.kontena.local:9093
     links:
       - loadbalancer
     environment:
@@ -69,7 +69,7 @@ services:
     instances: 1
     stateful: false
     image: rase/openfaas-kontena-prometheus-alertmanager:0.0.1
-    command: ["/bin/alertmanager", "-config.file=/alertmanager.yml", "-storage.path=/alertmanager"]
+    command: /bin/alertmanager -config.file=/alertmanager.yml -storage.path=/alertmanager
     deploy:
       wait_for_port: 9093
 
