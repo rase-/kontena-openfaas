@@ -1,0 +1,9 @@
+provider:
+  name: faas
+  gateway: http://openfaas.kontena.rocks
+
+functions:
+  nodejs-echo:
+    lang: node
+    handler: ./nodejs-echo
+    image: alexellis/faas-nodejs-echo
