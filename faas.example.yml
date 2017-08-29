@@ -14,6 +14,24 @@ variables:
     from:
       prompt: Openfaas monitor domain
 
+  master_url:
+    type: uri
+    schemes:
+      - http
+      - https
+    from:
+      prompt: kontena master url
+
+  master_auth_token:
+    type: string
+    from:
+      prompt: kontena master auth token (Bearer token)
+
+  faas_grid:
+    type: string
+    from:
+      prompt: Grid name to use for openfaas
+
 services:
   loadbalancer:
     image: kontena/lb:latest
@@ -24,15 +42,15 @@ services:
     ports:
       - 80:80
       - 443:443
-      - 9090:9090
+      - 9090:9090 # TODO maybe can be removed?
   api:
     image: rase/kontena-openfaas:0.0.14
     instances: 1
     stateful: false
     environment:
-      - MASTER_URL=<fill-here>
-      - AUTH_TOKEN=<fill-here>
-      - GRID_ID=<fill-here>
+      - MASTER_URL={{ master_url }}
+      - AUTH_TOKEN={{ master_auth_token }}
+      - GRID_ID={{ faas_grid }}
     deploy:
       strategy: ha
       wait_for_port: 8080
