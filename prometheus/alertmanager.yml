@@ -64,5 +64,5 @@ inhibit_rules:
 receivers:
 - name: 'scale-up'
   webhook_configs:
-    - url: http://gateway.openfaas.kontena.local:8080/system/alert
+    - url: http://api.openfaas.kontena.local:8080/system/alert
       send_resolved: true
